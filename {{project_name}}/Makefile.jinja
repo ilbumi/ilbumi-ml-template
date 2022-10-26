@@ -1,0 +1,30 @@
+.DEFAULT_GOAL := help
+
+
+# Variables
+
+PYTHON = python
+CODE = {{ python_package_name }} tests
+
+
+# Actions
+
+.PHONY: help
+help:
+	@echo "Usage: make <target>"
+	@echo ""
+	@echo "Targets:"
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-16s\033[0m %s\n", $$1, $$2}'
+
+.PHONY: build
+build:
+	docker build -t {{author}}/{{python_package_name}} .
+
+.PHONY: run
+run:
+    docker run -t {{author}}/{{python_package_name}}
+
+.PHONY: test
+test: ## run tests
+	@echo "\n********* RUN TESTS *********\n"
+	$(BIN)/pytest tests $(args)

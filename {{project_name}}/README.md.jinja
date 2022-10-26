@@ -1,0 +1,46 @@
+# {{ project_name }}
+
+{{ project_description }}
+
+## Running project
+
+First, you need to build docker image
+```bash
+make build
+```
+
+Then you can run the project with
+```bash
+make run
+```
+
+or 
+
+```bash
+docker run -t {{author}}/{{python_package_name}}:latest
+```
+
+Using the second option, you can override `run.py` default arguments by
+appending them to the end of the command:
+
+```bash
+docker run -t {{author}}/{{python_package_name}}:latest some_group.some_arg=alt_arg
+```
+
+## Package installation
+
+If you just need tools from the package, just install it using `pip`:
+```bash
+pip install {{ python_package_name }}
+```
+
+
+## Other Actions
+
+### Testing
+
+You can run tests using
+
+```bash
+make test
+```

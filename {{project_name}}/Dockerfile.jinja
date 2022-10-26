@@ -1,0 +1,9 @@
+FROM {{base_image}}
+RUN mkdir /app
+WORKDIR /app
+COPY . .
+RUN pip install -r requirements.txt
+
+# Modify entrypoint if you need to
+ENTRYPOINT ["python run.py"]
+CMD []

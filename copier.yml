@@ -1,0 +1,25 @@
+project_name:
+  type: str
+  help: What is your project name?
+
+project_description:
+  type: str
+  help: Description for your project
+
+python_package_name:
+  type: str
+  help: What is your desired package name? It will be used as docker image name!
+  default: "{{ project_name|lower|replace('-', '_')|replace(' ', '_') }}"
+
+author:
+  type: str
+  help: Username for docker registry
+
+base_image:
+  type: str
+  help: What is the base image for the docker container?
+  default:  "ilbumi/python-toolkit:22.10.2-base"
+# Settings
+_template_suffix: .jinja
+_skip_if_exists:
+  - CHANGELOG.md
